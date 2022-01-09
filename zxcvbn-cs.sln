@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{71211407-F148-4CD8-A83E-2E0399B8D97D}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		appveyor.yml = appveyor.yml
+		LICENSE = LICENSE
+		nuget.exe = nuget.exe
+		prebuild.ps1 = prebuild.ps1
+		README.md = README.md
+		tests.bat = tests.bat
+		TODO-Global.txt = TODO-Global.txt
+		upload-results.ps1 = upload-results.ps1
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zxcvbn-core", "zxcvbn-core\zxcvbn-core.csproj", "{5D3F6D54-EB79-4980-B09A-5C72136E8B4A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zxcvbn-core-test", "zxcvbn-core-test\zxcvbn-core-test.csproj", "{65B256F9-4874-4D6F-9A46-D881FAB0215B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zxcvbn-core-list-builder", "zxcvbn-core-list-builder\zxcvbn-core-list-builder.csproj", "{80BA1964-B98A-4D34-95B8-DFA51CD3A378}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D3F6D54-EB79-4980-B09A-5C72136E8B4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D3F6D54-EB79-4980-B09A-5C72136E8B4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D3F6D54-EB79-4980-B09A-5C72136E8B4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D3F6D54-EB79-4980-B09A-5C72136E8B4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65B256F9-4874-4D6F-9A46-D881FAB0215B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65B256F9-4874-4D6F-9A46-D881FAB0215B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65B256F9-4874-4D6F-9A46-D881FAB0215B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65B256F9-4874-4D6F-9A46-D881FAB0215B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80BA1964-B98A-4D34-95B8-DFA51CD3A378}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80BA1964-B98A-4D34-95B8-DFA51CD3A378}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80BA1964-B98A-4D34-95B8-DFA51CD3A378}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80BA1964-B98A-4D34-95B8-DFA51CD3A378}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FF2D379C-4018-4EF8-B032-89FCE8B2A37D}
+	EndGlobalSection
+EndGlobal
