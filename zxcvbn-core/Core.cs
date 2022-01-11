@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Zxcvbn.Matcher;
 using Zxcvbn.Matcher.Matches;
 
 namespace Zxcvbn
@@ -17,23 +18,30 @@ namespace Zxcvbn
         /// <returns>Result for the password.</returns>
         public static Result EvaluatePassword(string password, IEnumerable<string> userInputs = null)
         {
-            password = password ?? string.Empty;
-            userInputs = userInputs ?? Enumerable.Empty<string>();
+            password ??= string.Empty;
+            userInputs ??= Enumerable.Empty<string>();
+            IEnumerable<Match> matches = new List<Match>();
 
             var timer = System.Diagnostics.Stopwatch.StartNew();
 
-            var matches = GetAllMatches(password, userInputs);
+            foreach (var matcher in DefaultMatcherFactory.CreateMatchers(userInputs))
+            {
+                matches = matches.Union(matcher.MatchPassword(password));
+            }
+
             var result = PasswordScoring.MostGuessableMatchSequence(password, matches);
             timer.Stop();
 
             var attackTimes = TimeEstimates.EstimateAttackTimes(result.Guesses);
             var feedback = Feedback.GetFeedback(result.Score, result.Sequence);
+            var entropy = EntropyEstimates.EstimateEntropy(MinimumEntropy.EstimateMinimumEntropy(password, matches));
 
             var finalResult = new Result
             {
                 CalcTime = timer.ElapsedMilliseconds,
                 CrackTime = attackTimes.CrackTimesSeconds,
                 CrackTimeDisplay = attackTimes.CrackTimesDisplay,
+                Entropy = entropy.Value,
                 Score = attackTimes.Score,
                 MatchSequence = result.Sequence,
                 Guesses = result.Guesses,
@@ -52,7 +60,7 @@ namespace Zxcvbn
         /// <returns>An enumerable of relevant matches.</returns>
         internal static IEnumerable<Match> GetAllMatches(string token, IEnumerable<string> userInputs = null)
         {
-            userInputs = userInputs ?? Enumerable.Empty<string>();
+            userInputs ??= Enumerable.Empty<string>();
 
             return DefaultMatcherFactory.CreateMatchers(userInputs).SelectMany(matcher => matcher.MatchPassword(token));
         }

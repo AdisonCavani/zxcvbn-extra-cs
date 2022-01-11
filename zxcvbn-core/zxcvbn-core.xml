@@ -107,6 +107,28 @@
             <param name="userInputs">Enumerable of user information.</param>
             <returns>Enumerable of matchers to use.</returns>
         </member>
+        <member name="T:Zxcvbn.Entropy">
+            <summary>
+            A summary of the attack times for the password.
+            </summary>
+        </member>
+        <member name="P:Zxcvbn.Entropy.Value">
+            <summary>
+            Gets or sets a calculated estimate of how many bits of entropy the password covers.
+            </summary>
+        </member>
+        <member name="T:Zxcvbn.EntropyEstimates">
+            <summary>
+            Estimates how long a password will take to crack under various conditions.
+            </summary>
+        </member>
+        <member name="M:Zxcvbn.EntropyEstimates.EstimateEntropy(System.Double)">
+            <summary>
+            Calculates the estimated attack times.
+            </summary>
+            <param name="minEntropy">The number of guesses required.</param>
+            <returns>A summary of the estimated attack times.</returns>
+        </member>
         <member name="T:Zxcvbn.Feedback">
             <summary>
             Generates feedback based on the match results.
@@ -341,6 +363,11 @@
             </summary>
             <seealso cref="T:Zxcvbn.Matcher.Matches.Match" />
         </member>
+        <member name="P:Zxcvbn.Matcher.Matches.DictionaryMatch.BaseEntropy">
+            <summary>
+            Gets the base entropy of the match, calculated from frequency rank.
+            </summary>
+        </member>
         <member name="P:Zxcvbn.Matcher.Matches.DictionaryMatch.BaseGuesses">
             <summary>
             Gets the base guesses associated with the matched word.
@@ -394,6 +421,11 @@
             Gets the number of uppercase variations associated with this match.
             </summary>
         </member>
+        <member name="P:Zxcvbn.Matcher.Matches.DictionaryMatch.UppercaseEntropy">
+            <summary>
+            Gets the additional entropy for this match from the use of mixed case.
+            </summary>
+        </member>
         <member name="P:Zxcvbn.Matcher.Matches.DictionaryMatch.L33tSubs">
             <summary>
             Gets or sets the l33t character mappings that are in use for this match.
@@ -405,6 +437,11 @@
         <member name="T:Zxcvbn.Matcher.Matches.Match">
             <summary>
             A match identified by zxcvbn.
+            </summary>
+        </member>
+        <member name="P:Zxcvbn.Matcher.Matches.Match.Entropy">
+            <summary>
+            Gets the entropy that this portion of the password covers using the current pattern matching technique.
             </summary>
         </member>
         <member name="P:Zxcvbn.Matcher.Matches.Match.Guesses">
@@ -678,6 +715,19 @@
             <param name="password">The password to check.</param>
             <returns>An enumerable of spatial matches.</returns>
         </member>
+        <member name="T:Zxcvbn.MinimumEntropy">
+            <summary>
+            Estimates how long a password will take to crack under various conditions.
+            </summary>
+        </member>
+        <member name="M:Zxcvbn.MinimumEntropy.EstimateMinimumEntropy(System.String,System.Collections.Generic.IEnumerable{Zxcvbn.Matcher.Matches.Match})">
+            <summary>
+            Calculates the estimated attack times.
+            </summary>
+            <param name="password">The number of guesses required.</param>
+            <param name="matches">The number of guedsses required.</param>
+            <returns>A summary of the estimated attack times.</returns>
+        </member>
         <member name="T:Zxcvbn.MostGuessableMatchResult">
             <summary>
             Represents the most guessable match provided.
@@ -742,6 +792,14 @@
             <param name="k">k.</param>
             <returns>Binomial coefficient.</returns>
         </member>
+        <member name="M:Zxcvbn.PasswordScoring.CalculateUppercaseEntropy(System.String)">
+            <summary>
+            Estimate the extra entropy in a token that comes from mixing upper and lowercase letters.
+            This has been moved to a static function so that it can be used in multiple entropy calculations.
+            </summary>
+            <param name="word">The word to calculate uppercase entropy for</param>
+            <returns>An estimation of the entropy gained from casing in <paramref name="word"/></returns>
+        </member>
         <member name="M:Zxcvbn.PasswordScoring.EstimateGuesses(Zxcvbn.Matcher.Matches.Match,System.String)">
             <summary>
             Estimates the attempts required to guess the password.
@@ -758,6 +816,14 @@
             <param name="matches">The matches.</param>
             <param name="excludeAdditive">if set to <c>true</c>, will exclude additive matches (for unit testing only).</param>
             <returns>A summary on the most testable match.</returns>
+        </member>
+        <member name="M:Zxcvbn.PasswordScoring.PasswordCardinality(System.String)">
+            <summary>
+            Calculate the cardinality of the minimal character sets necessary to brute force the password (roughly)
+            (e.g. lowercase = 26, numbers = 10, lowercase + numbers = 36)
+            </summary>
+            <param name="password">THe password to evaluate</param>
+            <returns>An estimation of the cardinality of charactes for this password</returns>
         </member>
         <member name="T:Zxcvbn.Result">
             <summary>
@@ -777,6 +843,11 @@
         <member name="P:Zxcvbn.Result.CrackTimeDisplay">
             <summary>
             Gets a set of string for the crack times.
+            </summary>
+        </member>
+        <member name="P:Zxcvbn.Result.Entropy">
+            <summary>
+            Gets a calculated estimate of how many bits of entropy the password covers, rounded to three decimal places.
             </summary>
         </member>
         <member name="P:Zxcvbn.Result.Feedback">

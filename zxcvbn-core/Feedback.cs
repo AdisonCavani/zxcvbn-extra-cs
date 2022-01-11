@@ -42,7 +42,7 @@ namespace Zxcvbn
             var longestMatch = sequence.OrderBy(c => c.Token.Length).Last();
 
             var feedback = GetMatchFeedback(longestMatch, sequence.Count() == 1);
-            var extraFeedback = "Add another word or two.  Uncommon words are better.";
+            var extraFeedback = "Add another word or two. Uncommon words are better.";
 
             if (feedback != null)
             {

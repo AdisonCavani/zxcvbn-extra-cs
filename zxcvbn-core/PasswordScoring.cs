@@ -36,6 +36,31 @@ namespace Zxcvbn
         }
 
         /// <summary>
+        /// Estimate the extra entropy in a token that comes from mixing upper and lowercase letters.
+        /// This has been moved to a static function so that it can be used in multiple entropy calculations.
+        /// </summary>
+        /// <param name="word">The word to calculate uppercase entropy for</param>
+        /// <returns>An estimation of the entropy gained from casing in <paramref name="word"/></returns>
+        public static double CalculateUppercaseEntropy(string word)
+        {
+            const string startUpper = "^[A-Z][^A-Z]+$";
+            const string endUpper = "^[^A-Z]+[A-Z]$";
+            const string allUpper = "^[^a-z]+$";
+            const string allLower = "^[^A-Z]+$";
+
+            if (System.Text.RegularExpressions.Regex.IsMatch(word, allLower)) return 0;
+
+            // If the word is all uppercase add's only one bit of entropy, add only one bit for initial/end single cap only
+            if (new[] { startUpper, endUpper, allUpper }.Any(re => System.Text.RegularExpressions.Regex.IsMatch(word, re))) return 1;
+
+            var lowers = word.Count(c => c >= 'a' && c <= 'z');
+            var uppers = word.Count(c => c >= 'A' && c <= 'Z');
+
+            // Calculate numer of ways to capitalise (or inverse if there are fewer lowercase chars) and return lg for entropy
+            return Math.Log(Enumerable.Range(0, Math.Min(uppers, lowers) + 1).Sum(i => Binomial(uppers + lowers, i)), 2);
+        }
+
+        /// <summary>
         /// Estimates the attempts required to guess the password.
         /// </summary>
         /// <param name="match">The match.</param>
@@ -141,6 +166,25 @@ namespace Zxcvbn
                 Sequence = optimalMatchSequence,
                 Score = 0,
             };
+        }
+
+        /// <summary>
+        /// Calculate the cardinality of the minimal character sets necessary to brute force the password (roughly)
+        /// (e.g. lowercase = 26, numbers = 10, lowercase + numbers = 36)
+        /// </summary>
+        /// <param name="password">THe password to evaluate</param>
+        /// <returns>An estimation of the cardinality of charactes for this password</returns>
+        public static int PasswordCardinality(string password)
+        {
+            var cl = 0;
+
+            if (password.Any(c => c >= 'a' && c <= 'z')) cl += 26; // Lowercase
+            if (password.Any(c => c >= 'A' && c <= 'Z')) cl += 26; // Uppercase
+            if (password.Any(c => c >= '0' && c <= '9')) cl += 10; // Numbers
+            if (password.Any(c => c <= '/' || (c >= ':' && c <= '@') || (c >= '[' && c <= '`') || (c >= '{' && c <= 0x7F))) cl += 33; // Symbols
+            if (password.Any(c => c > 0x7F)) cl += 100; // 'Unicode' (why 100?)
+
+            return cl;
         }
 
         private static void BruteforceUpdate(string password, OptimalValues optimal, int k, bool excludeAdditive)

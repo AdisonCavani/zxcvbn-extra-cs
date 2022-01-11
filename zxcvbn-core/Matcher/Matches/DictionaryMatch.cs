@@ -10,6 +10,11 @@ namespace Zxcvbn.Matcher.Matches
     public class DictionaryMatch : Match
     {
         /// <summary>
+        /// Gets the base entropy of the match, calculated from frequency rank.
+        /// </summary>
+        public double BaseEntropy { get; internal set; }
+
+        /// <summary>
         /// Gets the base guesses associated with the matched word.
         /// </summary>
         public double BaseGuesses { get; internal set; }
@@ -61,6 +66,11 @@ namespace Zxcvbn.Matcher.Matches
         /// Gets the number of uppercase variations associated with this match.
         /// </summary>
         public double UppercaseVariations { get; internal set; }
+
+        /// <summary>
+        /// Gets the additional entropy for this match from the use of mixed case.
+        /// </summary>
+        public double UppercaseEntropy { get; internal set; }
 
         /// <summary>
         /// Gets or sets the l33t character mappings that are in use for this match.
