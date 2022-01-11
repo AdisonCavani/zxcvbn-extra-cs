@@ -1,6 +1,10 @@
 Zxcvbn C#/.NET
 ==============
 
+[![NuGet](https://img.shields.io/nuget/v/zxcvbn-extra)](https://www.nuget.org/packages/zxcvbn-extra)
+[![License](https://img.shields.io/github/license/AdisonCavani/zxcvbn-extra-cs)](https://github.com/AdisonCavani/zxcvbn-extra-cs/blob/master/LICENSE)
+
+
 This is a fork of [Zxcvbn-cs](https://github.com/trichards57/zxcvbn-cs) - a port of the [Zxcvbn](https://github.com/dropbox/zxcvbn) JavaScript password strength estimation library to .NET, written in C#.
 
 From the `Zxcvbn` readme:
