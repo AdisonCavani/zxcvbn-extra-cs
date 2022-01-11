@@ -39,8 +39,8 @@ namespace Zxcvbn
         /// Estimate the extra entropy in a token that comes from mixing upper and lowercase letters.
         /// This has been moved to a static function so that it can be used in multiple entropy calculations.
         /// </summary>
-        /// <param name="word">The word to calculate uppercase entropy for</param>
-        /// <returns>An estimation of the entropy gained from casing in <paramref name="word"/></returns>
+        /// <param name="word">The word to calculate uppercase entropy for.</param>
+        /// <returns>An estimation of the entropy gained from casing in <paramref name="word"/>.</returns>
         public static double CalculateUppercaseEntropy(string word)
         {
             const string startUpper = "^[A-Z][^A-Z]+$";
@@ -170,10 +170,10 @@ namespace Zxcvbn
 
         /// <summary>
         /// Calculate the cardinality of the minimal character sets necessary to brute force the password (roughly)
-        /// (e.g. lowercase = 26, numbers = 10, lowercase + numbers = 36)
+        /// (e.g. lowercase = 26, numbers = 10, lowercase + numbers = 36).
         /// </summary>
-        /// <param name="password">THe password to evaluate</param>
-        /// <returns>An estimation of the cardinality of charactes for this password</returns>
+        /// <param name="password">THe password to evaluate.</param>
+        /// <returns>An estimation of the cardinality of charactes for this password.</returns>
         public static int PasswordCardinality(string password)
         {
             var cl = 0;

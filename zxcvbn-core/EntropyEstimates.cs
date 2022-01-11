@@ -8,7 +8,7 @@ namespace Zxcvbn
     internal static class EntropyEstimates
     {
         /// <summary>
-        /// Calculates the password entropy
+        /// Calculates the password entropy.
         /// </summary>
         /// <param name="minEntropy">The entropy.</param>
         /// <returns>A password entropy object.</returns>
@@ -16,7 +16,7 @@ namespace Zxcvbn
         {
             return new Entropy
             {
-                Value = Math.Round(minEntropy, 3);,
+                Value = Math.Round(minEntropy, 3),
             };
         }
     }

@@ -40,7 +40,7 @@ namespace Zxcvbn
                     }
                 }
             }
-            
+
             return password.Length == 0 ? 0 : minimumEntropyToIndex[password.Length - 1];
         }
     }
