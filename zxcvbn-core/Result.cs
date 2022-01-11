@@ -25,6 +25,11 @@ namespace Zxcvbn
         public CrackTimesDisplay CrackTimeDisplay { get; internal set; }
 
         /// <summary>
+        /// Gets a calculated estimate of how many bits of entropy the password covers, rounded to three decimal places.
+        /// </summary>
+        public double Entropy { get; internal set; }
+
+        /// <summary>
         /// Gets the feedback for the user about their password.
         /// </summary>
         public FeedbackItem Feedback { get; internal set; }

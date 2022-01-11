@@ -79,6 +79,9 @@ namespace Zxcvbn.Matcher
                 }
             }
 
+            foreach (var match in matches)
+                CalculateEntropyForMatch(match as DictionaryMatch);
+
             return matches.OrderBy(m => m.i).ThenBy(m => m.j);
         }
 
@@ -112,6 +115,14 @@ namespace Zxcvbn.Matcher
             }
 
             return dict;
+        }
+
+        private static void CalculateEntropyForMatch(DictionaryMatch match)
+        {
+            match.BaseEntropy = Math.Log(match.Rank, 2);
+            match.UppercaseEntropy = PasswordScoring.CalculateUppercaseEntropy(match.Token);
+
+            match.Entropy = match.BaseEntropy + match.UppercaseEntropy;
         }
     }
 }
