@@ -1,0 +1,35 @@
+name: Deploy to Github Packages
+
+on:
+  push:
+    tags:
+    - 'v*'
+    
+env:
+  PACKAGE_OUT_DIR: ${{ github.workspace }}/output
+  PROJECT_PATH: src/zxcvbn-core/zxcvbn-core.csproj
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: | 
+          2.0.x
+          6.0.x
+    - name: Restore dependencies
+      run: dotnet restore ${{ env.PROJECT_PATH }}
+    - name: Build
+      run: dotnet build ${{ env.PROJECT_PATH }} --no-restore --configuration Release
+    - name: Get version
+      id: version
+      uses: battila7/get-version-action@v2
+    - name: Pack package
+      run: dotnet pack ${{ env.PROJECT_PATH }} --no-restore --no-build -c Release --include-symbols -p:PackageVersion=${{ steps.version.outputs.version-without-v }} -o ${{ env.PACKAGE_OUT_DIR }}
+    - name: Push package
+      run: dotnet nuget push ${{ env.PACKAGE_OUT_DIR }}/*.nupkg -k ${{ secrets.GH_PAT }} -s "github"
