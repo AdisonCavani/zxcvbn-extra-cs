@@ -68,7 +68,8 @@ The `Result` structure returned from password evaluation is interpreted the same
 | 4 | Very unguessable: strong protection from offline slow-hash scenario | >= 10^10 |
 
 ## Zxcvbn-CS vs Zxcvbn-JS vs KeePass vs KeePassXC
- 
+This table shows entropy results from different programs
+
 <table>
     <thead>
         <tr>
