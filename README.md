@@ -70,141 +70,19 @@ The `Result` structure returned from password evaluation is interpreted the same
 ## Zxcvbn-CS vs Zxcvbn-JS vs KeePass vs KeePassXC
 This table shows entropy results from different programs
 
-<table>
-    <thead>
-        <tr>
-            <th>Zxcvbn-CS</th>
-            <th>Zxcvbn-JS</th>
-            <th>KeePass</th>
-            <th>KeePassXC</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td colspan=4><i>t</i></td>
-        </tr>
-        <tr>
-            <td>4.7</td>
-            <td>4.7</td>
-            <td>5</td>
-            <td>3.32</td>
-        </tr>
-        <tr>
-            <td colspan=4><i>t4</i></td>
-        </tr>
-        <tr>
-            <td>3.7</td>
-            <td>8.492</td>
-            <td>11</td>
-            <td>4.7</td>
-        </tr>
-        <tr>
-            <td colspan=4><i>t3XKczXFIOrqHRr_</i></td>
-        </tr>
-        <tr>
-            <td>85.008</td>
-            <td>90.578</td>
-            <td>92</td>
-            <td>91.96</td>
-        </tr>
-        <tr>
-            <td colspan=4><i>t3XKczXFIOrqHRr_t3XKczXFIOrqHRr</i></td>
-        </tr>
-        <tr>
-            <td>163.447</td>
-            <td>174.587</td>
-            <td>102</td>
-            <td>179.85</td>
-        </tr>
-        <tr>
-            <td colspan=4><i>+wq)tIw6gb4]Uh@"-E(=</i></td>
-        </tr>
-        <tr>
-            <td>141.289</td>
-            <td>115.203</td>
-            <td>127</td>
-            <td>120.62</td>
-        </tr>
-        <tr>
-            <td colspan=4><i>zK_f7M\(#"W-?4AyN6g}</i></td>
-        </tr>
-        <tr>
-            <td>131.397</td>
-            <td>124.901</td>
-            <td>131</td>
-            <td>128.7</td>
-        </tr>
-        <tr>
-            <td colspan=4><i>89673460696657893304</i></td>
-        </tr>
-        <tr>
-            <td>12.07</td>
-            <td>61.146</td>
-            <td>60</td>
-            <td>63.56</td>
-        </tr>
-        <tr>
-            <td colspan=4><i>acegikmoqsuwy</i></td>
-        </tr>
-        <tr>
-            <td>0</td>
-            <td>55.027</td>
-            <td>9</td>
-            <td>4.7</td>
-        </tr>
-        <tr>
-            <td colspan=4><i>Abracadabra</i></td>
-        </tr>
-        <tr>
-            <td>13.519</td>
-            <td>15.013</td>
-            <td>8</td>
-            <td>13.51</td>
-        </tr>
-        <tr>
-            <td colspan=4><i>abraCadaBra</i></td>
-        </tr>
-        <tr>
-            <td>18.585</td>
-            <td>20.029</td>
-            <td>10</td>
-            <td>18.57</td>
-        </tr>
-        <tr>
-            <td colspan=4><i>ab®a©@daBra</i></td>
-        </tr>
-        <tr>
-            <td>53.436</td>
-            <td>49.83</td>
-            <td>19</td>
-            <td>56</td>
-        </tr>
-        <tr>
-            <td colspan=4><i>.Abracadabram!67</i></td>
-        </tr>
-        <tr>
-            <td>33.229</td>
-            <td>43.293</td>
-            <td>41</td>
-            <td>40.12</td>
-        </tr>
-        <tr>
-            <td colspan=4><i>77starTrek-sta®w@rs!$</i></td>
-        </tr>
-        <tr>
-            <td>47.098</td>
-            <td>76.686</td>
-            <td>63</td>
-            <td>66.87</td>
-        </tr>
-        <tr>
-         <td colspan=4><i>hyevwfzfgyrlyafozwatdhujxlyltfdr</i></td>
-        </tr>
-        <tr>
-            <td>79.907</td>
-            <td>134.373</td>
-            <td>135</td>
-            <td>138.67</td>
-        </tr>
-    </tbody>
-</table>
+| Password                         | Zxcvbn-JS | KeePass | KeePassXC | Zxcvbn-CS |
+|----------------------------------|:---------:|:-------:|:---------:|-----------|
+| t                                | 4.7       | 4.7     | 5         | 3.32      |
+| t4                               | 3.7       | 8.492   | 11        | 4.7       |
+| t3XKczXFIOrqHRr_                 | 85.008    | 90.578  | 92        | 91.96     |
+| t3XKczXFIOrqHRr_t3XKczXFIOrqHRr  | 163.447   | 174.587 | 102       | 179.85    |
+| +wq)tIw6gb4]Uh@"-E(=             | 141.289   | 115.203 | 127       | 120.62    |
+| zK_f7M\(#"W-?4AyN6g}             | 131.397   | 124.901 | 131       | 128.7     |
+| 89673460696657893304             | 12.07     | 61.146  | 60        | 63.56     |
+| acegikmoqsuwy                    | 0         | 55.027  | 9         | 4.7       |
+| Abracadabra                      | 13.519    | 15.013  | 8         | 13.51     |
+| abraCadaBra                      | 18.585    | 20.029  | 10        | 18.57     |
+| ab®a©@daBra                      | 53.436    | 49.83   | 19        | 56        |
+| .Abracadabram!67                 | 33.229    | 43.293  | 41        | 40.12     |
+| 77starTrek-sta®w@rs!$            | 47.098    | 76.686  | 63        | 66.87     |
+| hyevwfzfgyrlyafozwatdhujxlyltfdr | 79.907    | 134.373 | 135       | 138.67    |
