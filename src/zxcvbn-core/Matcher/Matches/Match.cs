@@ -22,9 +22,6 @@ namespace Zxcvbn.Matcher.Matches
         /// </summary>
         public double GuessesLog10 => Math.Log10(Guesses);
 
-#pragma warning disable IDE1006 // Naming Styles
-#pragma warning disable SA1300 // Element should begin with upper-case letter
-
         /// <summary>
         /// Gets the start index in the password string of the matched token.
         /// </summary>
@@ -34,9 +31,6 @@ namespace Zxcvbn.Matcher.Matches
         /// Gets the end index in the password string of the matched token.
         /// </summary>
         public int j { get; internal set; }
-
-#pragma warning restore SA1300 // Element should begin with upper-case letter
-#pragma warning restore IDE1006 // Naming Styles
 
         /// <summary>
         /// Gets the name of the pattern matcher used to generate this match.

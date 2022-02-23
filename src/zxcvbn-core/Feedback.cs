@@ -9,7 +9,7 @@ namespace Zxcvbn
     /// </summary>
     internal static class Feedback
     {
-        private static readonly FeedbackItem DefaultFeedback = new FeedbackItem
+        private static readonly FeedbackItem DefaultFeedback = new()
         {
             Warning = string.Empty,
             Suggestions = new[]

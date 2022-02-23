@@ -28,7 +28,7 @@ namespace Zxcvbn.Matcher
         private const int MaxYear = 2050;
         private const int MinYear = 1000;
 
-        private static readonly ReadOnlyDictionary<int, int[][]> DateSplits = new ReadOnlyDictionary<int, int[][]>(new Dictionary<int, int[][]>
+        private static readonly ReadOnlyDictionary<int, int[][]> DateSplits = new(new Dictionary<int, int[][]>
         {
             [4] = new[]
             {
@@ -60,9 +60,9 @@ namespace Zxcvbn.Matcher
             },
         });
 
-        private readonly Regex dateWithNoSeperater = new Regex("^\\d{4,8}$", RegexOptions.Compiled | RegexOptions.IgnorePatternWhitespace);
+        private readonly Regex dateWithNoSeperater = new("^\\d{4,8}$", RegexOptions.Compiled | RegexOptions.IgnorePatternWhitespace);
 
-        private readonly Regex dateWithSeperator = new Regex(
+        private readonly Regex dateWithSeperator = new(
             @"^( \d{1,4} )    # day or month
                ( [\s/\\_.-] ) # separator
                ( \d{1,2} )    # month or day

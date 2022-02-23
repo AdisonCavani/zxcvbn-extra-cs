@@ -5,6 +5,16 @@
     <AssemblyName>zxcvbn-core-test</AssemblyName>
     <RootNamespace>Zxcvbn.Tests</RootNamespace>
     <IsPublishable>False</IsPublishable>
+    <AnalysisLevel>6.0-recommended</AnalysisLevel>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn />
+    <WarningsAsErrors />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn />
+    <WarningsAsErrors />
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="TestResults\**" />

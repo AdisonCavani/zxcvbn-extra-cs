@@ -107,8 +107,8 @@ namespace Zxcvbn.Matcher
             foreach (var word in wordList)
             {
                 var actualWord = word;
-                if (actualWord.Contains(" "))
-                    actualWord = actualWord.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries)[0];
+                if (actualWord.Contains(' '))
+                    actualWord = actualWord.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)[0];
 
                 // The word list is assumed to be in increasing frequency order
                 dict[actualWord] = i++;

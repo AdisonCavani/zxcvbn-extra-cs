@@ -1,58 +1,57 @@
-﻿using FluentAssertions;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using FluentAssertions;
 using Xunit;
 using Zxcvbn.Matcher.Matches;
 using Zxcvbn.Scoring;
 
-namespace Zxcvbn.Tests.Scoring
+namespace Zxcvbn.Tests.Scoring;
+
+public class RepeatScoringTests
 {
-    public class RepeatScoringTests
+    [Theory]
+    [InlineData("aa", "a", 2)]
+    [InlineData("999", "9", 3)]
+    [InlineData("$$$$", "$", 4)]
+    [InlineData("abab", "ab", 2)]
+    [InlineData("batterystaplebatterystaplebatterystaple", "batterystaple", 3)]
+    public void CalculatesTheRightNumberOfGuesses(string token, string baseToken, int expectedRepeats)
     {
-        [Theory]
-        [InlineData("aa", "a", 2)]
-        [InlineData("999", "9", 3)]
-        [InlineData("$$$$", "$", 4)]
-        [InlineData("abab", "ab", 2)]
-        [InlineData("batterystaplebatterystaplebatterystaple", "batterystaple", 3)]
-        public void CalculatesTheRightNumberOfGuesses(string token, string baseToken, int expectedRepeats)
+        var baseGuesses = PasswordScoring.MostGuessableMatchSequence(baseToken, Zxcvbn.Core.GetAllMatches(baseToken)).Guesses;
+
+        var match = new RepeatMatch
         {
-            var baseGuesses = PasswordScoring.MostGuessableMatchSequence(baseToken, Zxcvbn.Core.GetAllMatches(baseToken)).Guesses;
+            Token = token,
+            BaseToken = baseToken,
+            BaseGuesses = baseGuesses,
+            RepeatCount = expectedRepeats,
+            BaseMatchItems = new List<Match>(),
+            i = 1,
+            j = 2,
+        };
 
-            var match = new RepeatMatch
-            {
-                Token = token,
-                BaseToken = baseToken,
-                BaseGuesses = baseGuesses,
-                RepeatCount = expectedRepeats,
-                BaseMatchItems = new List<Match>(),
-                i = 1,
-                j = 2,
-            };
+        var expected = baseGuesses * expectedRepeats;
 
-            var expected = baseGuesses * expectedRepeats;
+        var actual = RepeatGuessesCalculator.CalculateGuesses(match);
+        actual.Should().Be(expected);
+    }
 
-            var actual = RepeatGuessesCalculator.CalculateGuesses(match);
-            actual.Should().Be(expected);
-        }
-
-        [Fact]
-        public void IsDelegatedToByEstimateGuesses()
+    [Fact]
+    public void IsDelegatedToByEstimateGuesses()
+    {
+        var match = new RepeatMatch
         {
-            var match = new RepeatMatch
-            {
-                Token = "aa",
-                BaseToken = "a",
-                BaseGuesses = PasswordScoring.MostGuessableMatchSequence("a", Zxcvbn.Core.GetAllMatches("a")).Guesses,
-                BaseMatchItems = new List<Match>(),
-                RepeatCount = 2,
-                i = 1,
-                j = 2,
-            };
+            Token = "aa",
+            BaseToken = "a",
+            BaseGuesses = PasswordScoring.MostGuessableMatchSequence("a", Zxcvbn.Core.GetAllMatches("a")).Guesses,
+            BaseMatchItems = new List<Match>(),
+            RepeatCount = 2,
+            i = 1,
+            j = 2,
+        };
 
-            var expected = RepeatGuessesCalculator.CalculateGuesses(match);
-            var actual = PasswordScoring.EstimateGuesses(match, "aa");
+        var expected = RepeatGuessesCalculator.CalculateGuesses(match);
+        var actual = PasswordScoring.EstimateGuesses(match, "aa");
 
-            actual.Should().Be(expected);
-        }
+        actual.Should().Be(expected);
     }
 }

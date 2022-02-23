@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Zxcvbn.Matcher;
 using Zxcvbn.Matcher.Matches;
 
 namespace Zxcvbn
