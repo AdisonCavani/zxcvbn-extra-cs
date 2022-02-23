@@ -66,7 +66,8 @@ The `Result` structure returned from password evaluation is interpreted the same
 | 2 | Somewhat guessable: protection from unthrottled online attacks | < 10^8 |
 | 3 | Safely unguessable: moderate protection from offline slow-hash scenario | < 10^10 |
 | 4 | Very unguessable: strong protection from offline slow-hash scenario | >= 10^10 |
- 
+
+## Zxcvbn-CS vs Zxcvbn-JS vs KeePass vs KeePassXC
  
 <table>
     <thead>
