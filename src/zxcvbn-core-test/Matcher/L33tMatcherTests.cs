@@ -10,11 +10,11 @@ namespace Zxcvbn.Tests.Matcher
 {
     public class L33tMatcherTests
     {
-        private static readonly DictionaryMatcher TestDictionary1 = new DictionaryMatcher("words", new[] { "aac", string.Empty, "password", "paassword", "asdf0" });
+        private static readonly DictionaryMatcher TestDictionary1 = new("words", new[] { "aac", string.Empty, "password", "paassword", "asdf0" });
 
-        private static readonly DictionaryMatcher TestDictionary2 = new DictionaryMatcher("words2", new[] { "cgo" });
+        private static readonly DictionaryMatcher TestDictionary2 = new("words2", new[] { "cgo" });
 
-        private static readonly ReadOnlyDictionary<char, char[]> TestL33tTable = new ReadOnlyDictionary<char, char[]>(new Dictionary<char, char[]>
+        private static readonly ReadOnlyDictionary<char, char[]> TestL33tTable = new(new Dictionary<char, char[]>
         {
             ['a'] = new[] { '4', '@' },
             ['c'] = new[] { '(', '{', '[', '<' },
