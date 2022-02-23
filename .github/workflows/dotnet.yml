@@ -3,14 +3,12 @@ name: .NET
 on:
   push:
     paths:
-    - zxcvbn-core-list-builder/**.cs
-    - zxcvbn-core-test/**.cs
-    - zxcvbn-core/**.cs
+    - src/**.cs
+    - src/**.csproj
   pull_request:
     paths:
-    - zxcvbn-core-list-builder/**.cs
-    - zxcvbn-core-test/**.cs
-    - zxcvbn-core/**.cs
+    - src/**.cs
+    - src/**.csproj
 
 jobs:
   build:
