@@ -33,6 +33,7 @@ namespace Zxcvbn
             timer.Stop();
 
             var attackTimes = TimeEstimates.EstimateAttackTimes(result.Guesses);
+            result.Score = attackTimes.Score;
             var feedback = Feedback.GetFeedback(result.Score, result.Sequence);
             var entropy = EntropyEstimates.EstimateEntropy(MinimumEntropy.EstimateMinimumEntropy(password, matches));
 

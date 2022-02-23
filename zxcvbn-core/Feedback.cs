@@ -75,12 +75,11 @@ namespace Zxcvbn
                     else
                         warning = "This is a very common password";
                 }
-                else
+                else if (match.GuessesLog10 <= 4)
                 {
-                    warning = "This is similar to a commonly used password.";
+                    warning = "This is similar to a commonly used password";
                 }
             }
-            
             else if (match.DictionaryName == "english" && isSoleMatch)
             {
                 warning = "A word by itself is easy to guess";
