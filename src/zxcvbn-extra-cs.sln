@@ -9,6 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zxcvbn-core-test", "zxcvbn-
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "zxcvbn-core-list-builder", "zxcvbn-core-list-builder\zxcvbn-core-list-builder.csproj", "{80BA1964-B98A-4D34-95B8-DFA51CD3A378}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FAEF57A5-88CB-467E-B5F1-81032C0C9100}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
