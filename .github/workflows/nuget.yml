@@ -8,7 +8,7 @@ on:
 env:
   NUGET_SRC_URL: https://api.nuget.org/v3/index.json
   PROJECT_PATH: src/zxcvbn-core/zxcvbn-core.csproj
-  PACKAGE_OUT_DIR: ${{ github.workspace }}/output
+  PACKAGE_OUT_DIR: ${{ github.workspace }}\output
 
 jobs:
   deploy:
