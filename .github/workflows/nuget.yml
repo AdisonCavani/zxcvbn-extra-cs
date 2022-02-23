@@ -7,8 +7,8 @@ on:
     
 env:
   NUGET_SRC_URL: https://api.nuget.org/v3/index.json
+  PACKAGE_OUT_DIR: ${{ github.workspace }}/output
   PROJECT_PATH: src/zxcvbn-core/zxcvbn-core.csproj
-  PACKAGE_OUT_DIR: ${{ github.workspace }}\output
 
 jobs:
   deploy:
@@ -33,4 +33,4 @@ jobs:
     - name: Pack package
       run: dotnet pack ${{ env.PROJECT_PATH }} --no-restore --no-build --configuration Release --include-symbols -p:PackageVersion=${{ steps.version.outputs.version-without-v }} --output ${{ env.PACKAGE_OUT_DIR }}
     - name: Push package
-      run: dotnet nuget push ${{ env.PACKAGE_OUT_DIR }}\*.nupkg -k ${{ secrets.NUGET_AUTH_TOKEN }} -s ${{ env.NUGET_SRC_URL }}
+      run: dotnet nuget push ${{ env.PACKAGE_OUT_DIR }}/*.nupkg -k ${{ secrets.NUGET_AUTH_TOKEN }} -s ${{ env.NUGET_SRC_URL }}
