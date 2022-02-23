@@ -31,6 +31,6 @@ jobs:
       id: version
       uses: battila7/get-version-action@v2
     - name: Pack package
-      run: dotnet pack ${{ env.PROJECT_PATH }} --no-restore --no-build --configuration Release --include-symbols -p:PackageVersion=${{ steps.version.outputs.version-without-v }} --output ${{ env.PACKAGE_OUT_DIR }}
+      run: dotnet pack ${{ env.PROJECT_PATH }} --no-restore --no-build -c Release --include-symbols -p:PackageVersion=${{ steps.version.outputs.version-without-v }} -o ${{ env.PACKAGE_OUT_DIR }}
     - name: Push package
       run: dotnet nuget push ${{ env.PACKAGE_OUT_DIR }}/*.nupkg -k ${{ secrets.NUGET_AUTH_TOKEN }} -s ${{ env.NUGET_SRC_URL }}
