@@ -40,7 +40,11 @@ namespace Zxcvbn.Tests.Matcher
                     Token = "456",
                 },
             };
-            result.Should().BeEquivalentTo(expected);
+            result.Should().BeEquivalentTo(expected, options =>
+                options
+                    .Excluding(o => o.BaseEntropy)
+                    .Excluding(o => o.Entropy)
+                    .Excluding(o => o.UppercaseEntropy));
         }
     }
 }

@@ -38,7 +38,11 @@ namespace Zxcvbn.Tests.Matcher
                     Token = word,
                 },
             };
-            result.Should().BeEquivalentTo(expected);
+            result.Should().BeEquivalentTo(expected, options =>
+                options
+                    .Excluding(o => o.BaseEntropy)
+                    .Excluding(o => o.Entropy)
+                    .Excluding(o => o.UppercaseEntropy));
         }
 
         [Fact]
@@ -71,7 +75,11 @@ namespace Zxcvbn.Tests.Matcher
                     Token = "Z",
                 },
             };
-            result.Should().BeEquivalentTo(expected);
+            result.Should().BeEquivalentTo(expected, options =>
+                options
+                    .Excluding(o => o.BaseEntropy)
+                    .Excluding(o => o.Entropy)
+                    .Excluding(o => o.UppercaseEntropy));
         }
 
         [Theory]
@@ -102,7 +110,11 @@ namespace Zxcvbn.Tests.Matcher
                     Token = word,
                 },
             };
-            result.Should().BeEquivalentTo(expected);
+            result.Should().BeEquivalentTo(expected, options =>
+                options
+                    .Excluding(o => o.BaseEntropy)
+                    .Excluding(o => o.Entropy)
+                    .Excluding(o => o.UppercaseEntropy));
         }
 
         [Fact]
@@ -135,7 +147,11 @@ namespace Zxcvbn.Tests.Matcher
                     Token = "cdef",
                 },
             };
-            result.Should().BeEquivalentTo(expected);
+            result.Should().BeEquivalentTo(expected, options =>
+                options
+                    .Excluding(o => o.BaseEntropy)
+                    .Excluding(o => o.Entropy)
+                    .Excluding(o => o.UppercaseEntropy));
         }
 
         [Fact]
@@ -201,7 +217,11 @@ namespace Zxcvbn.Tests.Matcher
                 },
             };
 
-            result.Should().BeEquivalentTo(expected);
+            result.Should().BeEquivalentTo(expected, options =>
+                options
+                    .Excluding(o => o.BaseEntropy)
+                    .Excluding(o => o.Entropy)
+                    .Excluding(o => o.UppercaseEntropy));
         }
 
         [Fact]
@@ -223,7 +243,11 @@ namespace Zxcvbn.Tests.Matcher
                     Token = "wow",
                 },
             };
-            result.Should().BeEquivalentTo(expected);
+            result.Should().BeEquivalentTo(expected, options =>
+                options
+                    .Excluding(o => o.BaseEntropy)
+                    .Excluding(o => o.Entropy)
+                    .Excluding(o => o.UppercaseEntropy));
         }
 
         [Fact]
@@ -259,7 +283,11 @@ namespace Zxcvbn.Tests.Matcher
                 },
             };
 
-            result.Should().BeEquivalentTo(expected);
+            result.Should().BeEquivalentTo(expected, options =>
+                options
+                    .Excluding(o => o.BaseEntropy)
+                    .Excluding(o => o.Entropy)
+                    .Excluding(o => o.UppercaseEntropy));
         }
 
         private List<DictionaryMatch> RunMatches(string word)

@@ -156,7 +156,11 @@ namespace Zxcvbn.Tests.Matcher
                 },
             };
             var result = matcher.MatchPassword("p4ssword");
-            result.Should().BeEquivalentTo(expected);
+            result.Should().BeEquivalentTo(expected, options =>
+                options
+                    .Excluding(o => o.BaseEntropy)
+                    .Excluding(o => o.Entropy)
+                    .Excluding(o => o.UppercaseEntropy));
 
             expected = new List<DictionaryMatch>
             {
@@ -177,7 +181,11 @@ namespace Zxcvbn.Tests.Matcher
                 },
             };
             result = matcher.MatchPassword("p@ssw0rd");
-            result.Should().BeEquivalentTo(expected);
+            result.Should().BeEquivalentTo(expected, options =>
+                options
+                    .Excluding(o => o.BaseEntropy)
+                    .Excluding(o => o.Entropy)
+                    .Excluding(o => o.UppercaseEntropy));
 
             expected = new List<DictionaryMatch>
             {
@@ -198,7 +206,11 @@ namespace Zxcvbn.Tests.Matcher
                 },
             };
             result = matcher.MatchPassword("aSdfO{G0asDfO");
-            result.Should().BeEquivalentTo(expected);
+            result.Should().BeEquivalentTo(expected, options =>
+                options
+                    .Excluding(o => o.BaseEntropy)
+                    .Excluding(o => o.Entropy)
+                    .Excluding(o => o.UppercaseEntropy));
         }
 
         [Fact]
@@ -257,7 +269,11 @@ namespace Zxcvbn.Tests.Matcher
                 },
             };
             var result = matcher.MatchPassword("@a(go{G0");
-            result.Should().BeEquivalentTo(expected);
+            result.Should().BeEquivalentTo(expected, options =>
+                options
+                    .Excluding(o => o.BaseEntropy)
+                    .Excluding(o => o.Entropy)
+                    .Excluding(o => o.UppercaseEntropy));
         }
 
         [Fact]
