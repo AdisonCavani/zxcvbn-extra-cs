@@ -18,6 +18,9 @@
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <LangVersion>10</LangVersion>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+    <EnableNETAnalyzers>True</EnableNETAnalyzers>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <AnalysisLevel>6.0-recommended</AnalysisLevel>
   </PropertyGroup>
   <ItemGroup>
     <EmbeddedResource Include="Dictionaries\*.lst" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
