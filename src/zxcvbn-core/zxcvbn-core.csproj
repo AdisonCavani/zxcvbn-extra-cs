@@ -12,8 +12,6 @@
     <Copyright>Copyright (c) 2012 Dropbox, Inc. Copyright (c) 2020-2021 Tony Richards. Copyright (c) 2022 Adison Cavani</Copyright>
     <RootNamespace>Zxcvbn</RootNamespace>
     <DocumentationFile>$(TargetDir)zxcvbn-core.xml</DocumentationFile>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>zxcvbn-strong-name-key.snk</AssemblyOriginatorKeyFile>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
