@@ -1,0 +1,36 @@
+name: Deploy to NuGet
+
+on:
+  push:
+    tags:
+    - 'v*'
+    
+env:
+  NUGET_SRC_URL: https://api.nuget.org/v3/index.json
+  PROJECT_PATH: src/zxcvbn-core/zxcvbn-core.csproj
+  PACKAGE_OUT_DIR: ${{ github.workspace }}/output
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: | 
+          2.0.x
+          6.0.x
+    - name: Restore dependencies
+      run: dotnet restore ${{ env.PROJECT_PATH }}
+    - name: Build
+      run: dotnet build ${{ env.PROJECT_PATH }} --no-restore --configuration Release
+    - name: Get version
+      id: version
+      uses: batilla/get-version-action@v2
+    - name: Pack package
+      run: dotnet pack ${{ env.PROJECT_PATH }} --no-restore --no-build --configuration Release --include-symbols -p:PackageVersion=${{ steps.version.outputs.version-without-v }} --output ${{ env.PACKAGE_OUT_DIR }}
+    - name: Push package
+      run: dotnet nuget push ${{ env.PACKAGE_OUT_DIR }}\*.nupkg -k ${{ secrets.NUGET_AUTH_TOKEN }} -s ${{ env.NUGET_SRC_URL }}
