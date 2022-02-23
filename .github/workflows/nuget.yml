@@ -29,7 +29,7 @@ jobs:
       run: dotnet build ${{ env.PROJECT_PATH }} --no-restore --configuration Release
     - name: Get version
       id: version
-      uses: batilla/get-version-action@v2
+      uses: batilla7/get-version-action@v2
     - name: Pack package
       run: dotnet pack ${{ env.PROJECT_PATH }} --no-restore --no-build --configuration Release --include-symbols -p:PackageVersion=${{ steps.version.outputs.version-without-v }} --output ${{ env.PACKAGE_OUT_DIR }}
     - name: Push package
