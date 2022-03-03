@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
-using System.Linq;
 using System.Text.RegularExpressions;
+using System;
 using Zxcvbn.Matcher.Matches;
+using System.Linq;
 
 namespace Zxcvbn.Matcher;
 
@@ -103,7 +103,7 @@ internal class DateMatcher : IMatcher
 
                     var date = MapIntsToDate(new[]
                     {
-                        int.Parse(dateMatch.Value[0..^kLength], CultureInfo.InvariantCulture),
+                        int.Parse(dateMatch.Value[..kLength], CultureInfo.InvariantCulture),
                         int.Parse(dateMatch.Value.Substring(l, lLength), CultureInfo.InvariantCulture),
                         int.Parse(dateMatch.Value[m..], CultureInfo.InvariantCulture),
                     });
@@ -206,7 +206,7 @@ internal class DateMatcher : IMatcher
 
         foreach (var i in vals)
         {
-            if (i is > 99 and < MinYear || i > MaxYear)
+            if ((i > 99 && i < MinYear) || i > MaxYear)
                 return null;
 
             if (i > 31)
@@ -253,13 +253,13 @@ internal class DateMatcher : IMatcher
         var day = vals[0];
         var month = vals[1];
 
-        if (day is >= 1 and <= 31 && month is >= 1 and <= 12)
+        if (day >= 1 && day <= 31 && month >= 1 && month <= 12)
             return new LooseDate(0, month, day);
 
         day = vals[1];
         month = vals[0];
 
-        if (day is >= 1 and <= 31 && month is >= 1 and <= 12)
+        if (day >= 1 && day <= 31 && month >= 1 && month <= 12)
             return new LooseDate(0, month, day);
 
         return null;
