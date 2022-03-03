@@ -4,159 +4,6 @@
         <name>zxcvbn-core</name>
     </assembly>
     <members>
-        <member name="T:Zxcvbn.AttackTimes">
-            <summary>
-            A summary of the attack times for the password.
-            </summary>
-        </member>
-        <member name="P:Zxcvbn.AttackTimes.CrackTimesDisplay">
-            <summary>
-            Gets or sets the display version of the crack times.
-            </summary>
-        </member>
-        <member name="P:Zxcvbn.AttackTimes.CrackTimesSeconds">
-            <summary>
-            Gets or sets the numerical version of the crack times.
-            </summary>
-        </member>
-        <member name="P:Zxcvbn.AttackTimes.Score">
-            <summary>
-            Gets or sets the overall score.
-            </summary>
-        </member>
-        <member name="T:Zxcvbn.Core">
-            <summary>
-            Estimates the strength of passwords.
-            </summary>
-        </member>
-        <member name="M:Zxcvbn.Core.EvaluatePassword(System.String,System.Collections.Generic.IEnumerable{System.String})">
-            <summary>
-            Perform the password matching on the given password and user inputs.
-            </summary>
-            <param name="password">The password to assess.</param>
-            <param name="userInputs">Optionally, an enumarable of user data.</param>
-            <returns>Result for the password.</returns>
-        </member>
-        <member name="M:Zxcvbn.Core.GetAllMatches(System.String,System.Collections.Generic.IEnumerable{System.String})">
-            <summary>
-            Gets all matches associated with a password.
-            </summary>
-            <param name="token">The password to assess.</param>
-            <param name="userInputs">The user input dictionary.</param>
-            <returns>An enumerable of relevant matches.</returns>
-        </member>
-        <member name="T:Zxcvbn.CrackTimes">
-            <summary>
-            Represents the time needed to crack the password under different conditions.
-            </summary>
-        </member>
-        <member name="P:Zxcvbn.CrackTimes.OfflineFastHashing1e10PerSecond">
-            <summary>
-            Gets the time if offline hashing at 1e10 per second.
-            </summary>
-        </member>
-        <member name="P:Zxcvbn.CrackTimes.OfflineSlowHashing1e4PerSecond">
-            <summary>
-            Gets the time if offline hashing at 1e4 per second.
-            </summary>
-        </member>
-        <member name="P:Zxcvbn.CrackTimes.OnlineNoThrottling10PerSecond">
-            <summary>
-            Gets the time if online attempting the password at 10 per second.
-            </summary>
-        </member>
-        <member name="P:Zxcvbn.CrackTimes.OnlineThrottling100PerHour">
-            <summary>
-            Gets the time if online attempting the password at 100 per hour.
-            </summary>
-        </member>
-        <member name="T:Zxcvbn.CrackTimesDisplay">
-            <summary>
-            Represents the time needed to crack the password under different conditions.
-            </summary>
-        </member>
-        <member name="P:Zxcvbn.CrackTimesDisplay.OfflineFastHashing1e10PerSecond">
-            <summary>
-            Gets the time if offline hashing at 1e10 per second.
-            </summary>
-        </member>
-        <member name="P:Zxcvbn.CrackTimesDisplay.OfflineSlowHashing1e4PerSecond">
-            <summary>
-            Gets the time if offline hashing at 1e4 per second.
-            </summary>
-        </member>
-        <member name="P:Zxcvbn.CrackTimesDisplay.OnlineNoThrottling10PerSecond">
-            <summary>
-            Gets the time if online attempting the password at 10 per second.
-            </summary>
-        </member>
-        <member name="P:Zxcvbn.CrackTimesDisplay.OnlineThrottling100PerHour">
-            <summary>
-            Gets the time if online attempting the password at 100 per hour.
-            </summary>
-        </member>
-        <member name="T:Zxcvbn.DefaultMatcherFactory">
-            <summary>
-            Creates the default matchers.
-            </summary>
-        </member>
-        <member name="M:Zxcvbn.DefaultMatcherFactory.CreateMatchers(System.Collections.Generic.IEnumerable{System.String})">
-            <summary>
-            Gets all of the built in matchers, as well as matchers for the custom dictionaries.
-            </summary>
-            <param name="userInputs">Enumerable of user information.</param>
-            <returns>Enumerable of matchers to use.</returns>
-        </member>
-        <member name="T:Zxcvbn.Entropy">
-            <summary>
-            Represents the password strenght in bits.
-            </summary>
-        </member>
-        <member name="P:Zxcvbn.Entropy.Value">
-            <summary>
-            Gets or sets a calculated estimate of how many bits of entropy the password covers.
-            </summary>
-        </member>
-        <member name="T:Zxcvbn.EntropyEstimates">
-            <summary>
-            Estimates password entropy.
-            </summary>
-        </member>
-        <member name="M:Zxcvbn.EntropyEstimates.EstimateEntropy(System.Double)">
-            <summary>
-            Calculates the password entropy.
-            </summary>
-            <param name="minEntropy">The entropy.</param>
-            <returns>A password entropy object.</returns>
-        </member>
-        <member name="T:Zxcvbn.Feedback">
-            <summary>
-            Generates feedback based on the match results.
-            </summary>
-        </member>
-        <member name="M:Zxcvbn.Feedback.GetFeedback(System.Int32,System.Collections.Generic.IEnumerable{Zxcvbn.Matcher.Matches.Match})">
-            <summary>
-            Gets feedback based on the provided score and matches.
-            </summary>
-            <param name="score">The score to assess.</param>
-            <param name="sequence">The sequence of matches to assess.</param>
-            <returns>Any warnings and suggestiongs about the password matches.</returns>
-        </member>
-        <member name="T:Zxcvbn.FeedbackItem">
-            <summary>
-            Represents feedback that can be presented to the user.
-            </summary>
-        </member>
-        <member name="P:Zxcvbn.FeedbackItem.Suggestions">
-            <summary>
-            Gets the list of suggestions that can be presented.
-            </summary>
-        </member>
-        <member name="P:Zxcvbn.FeedbackItem.Warning">
-            <summary>
-            Gets the warning that should be the headline for the user.
-            </summary>
-        </member>
         <member name="T:Zxcvbn.Matcher.DateMatcher">
              <summary>
              Attempts to match a string with a date.
@@ -715,6 +562,292 @@
             <param name="password">The password to check.</param>
             <returns>An enumerable of spatial matches.</returns>
         </member>
+        <member name="T:Zxcvbn.Scoring.BruteForceGuessesCalculator">
+            <summary>
+            Estimates the number of attempts needed to brute-force the password.
+            </summary>
+        </member>
+        <member name="F:Zxcvbn.Scoring.BruteForceGuessesCalculator.MinSubmatchGuessesMultiCharacter">
+            <summary>
+            The minimum submatch guesses for a multi character string.
+            </summary>
+        </member>
+        <member name="F:Zxcvbn.Scoring.BruteForceGuessesCalculator.MinSubmatchGuessesSingleCharacter">
+            <summary>
+            The minimum submatch guesses for a single character.
+            </summary>
+        </member>
+        <member name="M:Zxcvbn.Scoring.BruteForceGuessesCalculator.CalculateGuesses(Zxcvbn.Matcher.Matches.BruteForceMatch)">
+            <summary>
+            Estimates the attempts required to guess the password.
+            </summary>
+            <param name="match">The match.</param>
+            <returns>The guesses estimate.</returns>
+        </member>
+        <member name="T:Zxcvbn.Scoring.DateGuessesCalculator">
+            <summary>
+            Estimates the number of attempts needed to guess the date.
+            </summary>
+        </member>
+        <member name="F:Zxcvbn.Scoring.DateGuessesCalculator.MinimumYearSpace">
+            <summary>
+            The minimum distance between the reference date and the provided date.
+            </summary>
+        </member>
+        <member name="M:Zxcvbn.Scoring.DateGuessesCalculator.CalculateGuesses(Zxcvbn.Matcher.Matches.DateMatch)">
+            <summary>
+            Estimates the attempts required to guess the password.
+            </summary>
+            <param name="match">The match.</param>
+            <returns>The guesses estimate.</returns>
+        </member>
+        <member name="T:Zxcvbn.Scoring.DictionaryGuessesCalculator">
+            <summary>
+            Estimates the number of attempts needed to dictionary search for the password.
+            </summary>
+        </member>
+        <member name="M:Zxcvbn.Scoring.DictionaryGuessesCalculator.CalculateGuesses(Zxcvbn.Matcher.Matches.DictionaryMatch)">
+            <summary>
+            Estimates the attempts required to guess the password.
+            </summary>
+            <param name="match">The match.</param>
+            <returns>The guesses estimate.</returns>
+        </member>
+        <member name="M:Zxcvbn.Scoring.DictionaryGuessesCalculator.L33tVariations(Zxcvbn.Matcher.Matches.DictionaryMatch)">
+            <summary>
+            Calculates the number of l33t variations in the word.
+            </summary>
+            <param name="match">The match.</param>
+            <returns>The number of possible variations.</returns>
+        </member>
+        <member name="M:Zxcvbn.Scoring.DictionaryGuessesCalculator.UppercaseVariations(System.String)">
+            <summary>
+            Calculates the number of uppercase variations in the word.
+            </summary>
+            <param name="token">The token.</param>
+            <returns>The number of possible variations.</returns>
+        </member>
+        <member name="T:Zxcvbn.Scoring.RegexGuessesCalculator">
+            <summary>
+            Estimates the number of attempts needed to guess the value picked out by regular expression.
+            </summary>
+        </member>
+        <member name="M:Zxcvbn.Scoring.RegexGuessesCalculator.CalculateGuesses(Zxcvbn.Matcher.Matches.RegexMatch)">
+            <summary>
+            Estimates the attempts required to guess the password.
+            </summary>
+            <param name="match">The match.</param>
+            <returns>The guesses estimate.</returns>
+        </member>
+        <member name="T:Zxcvbn.Scoring.RepeatGuessesCalculator">
+            <summary>
+            Estimates the number of attempts needed to guesses the number of repeats.
+            </summary>
+        </member>
+        <member name="M:Zxcvbn.Scoring.RepeatGuessesCalculator.CalculateGuesses(Zxcvbn.Matcher.Matches.RepeatMatch)">
+            <summary>
+            Estimates the attempts required to guess the password.
+            </summary>
+            <param name="match">The match.</param>
+            <returns>The guesses estimate.</returns>
+        </member>
+        <member name="T:Zxcvbn.Scoring.SequenceGuessesCalculator">
+            <summary>
+            Estimates the number of attempts needed to guess the sequence.
+            </summary>
+        </member>
+        <member name="M:Zxcvbn.Scoring.SequenceGuessesCalculator.CalculateGuesses(Zxcvbn.Matcher.Matches.SequenceMatch)">
+            <summary>
+            Estimates the attempts required to guess the password.
+            </summary>
+            <param name="match">The match.</param>
+            <returns>The guesses estimate.</returns>
+        </member>
+        <member name="T:Zxcvbn.Scoring.SpatialGuessesCalculator">
+            <summary>
+            Estimates the number of attempts needed to guess the spatial pattern.
+            </summary>
+        </member>
+        <member name="F:Zxcvbn.Scoring.SpatialGuessesCalculator.KeyboardAverageDegree">
+            <summary>
+            The average number of adjacent characters on a keyboard.
+            </summary>
+        </member>
+        <member name="F:Zxcvbn.Scoring.SpatialGuessesCalculator.KeyboardStartingPositions">
+            <summary>
+            The number of starting positions on a keyboard.
+            </summary>
+        </member>
+        <member name="F:Zxcvbn.Scoring.SpatialGuessesCalculator.KeypadAverageDegree">
+            <summary>
+            The average number of adjacent characters on a keypad.
+            </summary>
+        </member>
+        <member name="F:Zxcvbn.Scoring.SpatialGuessesCalculator.KeypadStartingPositions">
+            <summary>
+            The number of starting positions on a keypad.
+            </summary>
+        </member>
+        <member name="M:Zxcvbn.Scoring.SpatialGuessesCalculator.CalculateGuesses(Zxcvbn.Matcher.Matches.SpatialMatch)">
+            <summary>
+            Estimates the attempts required to guess the password.
+            </summary>
+            <param name="match">The match.</param>
+            <returns>The guesses estimate.</returns>
+        </member>
+        <member name="T:Zxcvbn.AttackTimes">
+            <summary>
+            A summary of the attack times for the password.
+            </summary>
+        </member>
+        <member name="P:Zxcvbn.AttackTimes.CrackTimesDisplay">
+            <summary>
+            Gets or sets the display version of the crack times.
+            </summary>
+        </member>
+        <member name="P:Zxcvbn.AttackTimes.CrackTimesSeconds">
+            <summary>
+            Gets or sets the numerical version of the crack times.
+            </summary>
+        </member>
+        <member name="P:Zxcvbn.AttackTimes.Score">
+            <summary>
+            Gets or sets the overall score.
+            </summary>
+        </member>
+        <member name="T:Zxcvbn.Core">
+            <summary>
+            Estimates the strength of passwords.
+            </summary>
+        </member>
+        <member name="M:Zxcvbn.Core.EvaluatePassword(System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Perform the password matching on the given password and user inputs.
+            </summary>
+            <param name="password">The password to assess.</param>
+            <param name="userInputs">Optionally, an enumarable of user data.</param>
+            <returns>Result for the password.</returns>
+        </member>
+        <member name="M:Zxcvbn.Core.GetAllMatches(System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Gets all matches associated with a password.
+            </summary>
+            <param name="token">The password to assess.</param>
+            <param name="userInputs">The user input dictionary.</param>
+            <returns>An enumerable of relevant matches.</returns>
+        </member>
+        <member name="T:Zxcvbn.CrackTimes">
+            <summary>
+            Represents the time needed to crack the password under different conditions.
+            </summary>
+        </member>
+        <member name="P:Zxcvbn.CrackTimes.OfflineFastHashing1e10PerSecond">
+            <summary>
+            Gets the time if offline hashing at 1e10 per second.
+            </summary>
+        </member>
+        <member name="P:Zxcvbn.CrackTimes.OfflineSlowHashing1e4PerSecond">
+            <summary>
+            Gets the time if offline hashing at 1e4 per second.
+            </summary>
+        </member>
+        <member name="P:Zxcvbn.CrackTimes.OnlineNoThrottling10PerSecond">
+            <summary>
+            Gets the time if online attempting the password at 10 per second.
+            </summary>
+        </member>
+        <member name="P:Zxcvbn.CrackTimes.OnlineThrottling100PerHour">
+            <summary>
+            Gets the time if online attempting the password at 100 per hour.
+            </summary>
+        </member>
+        <member name="T:Zxcvbn.CrackTimesDisplay">
+            <summary>
+            Represents the time needed to crack the password under different conditions.
+            </summary>
+        </member>
+        <member name="P:Zxcvbn.CrackTimesDisplay.OfflineFastHashing1e10PerSecond">
+            <summary>
+            Gets the time if offline hashing at 1e10 per second.
+            </summary>
+        </member>
+        <member name="P:Zxcvbn.CrackTimesDisplay.OfflineSlowHashing1e4PerSecond">
+            <summary>
+            Gets the time if offline hashing at 1e4 per second.
+            </summary>
+        </member>
+        <member name="P:Zxcvbn.CrackTimesDisplay.OnlineNoThrottling10PerSecond">
+            <summary>
+            Gets the time if online attempting the password at 10 per second.
+            </summary>
+        </member>
+        <member name="P:Zxcvbn.CrackTimesDisplay.OnlineThrottling100PerHour">
+            <summary>
+            Gets the time if online attempting the password at 100 per hour.
+            </summary>
+        </member>
+        <member name="T:Zxcvbn.DefaultMatcherFactory">
+            <summary>
+            Creates the default matchers.
+            </summary>
+        </member>
+        <member name="M:Zxcvbn.DefaultMatcherFactory.CreateMatchers(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Gets all of the built in matchers, as well as matchers for the custom dictionaries.
+            </summary>
+            <param name="userInputs">Enumerable of user information.</param>
+            <returns>Enumerable of matchers to use.</returns>
+        </member>
+        <member name="T:Zxcvbn.Entropy">
+            <summary>
+            Represents the password strenght in bits.
+            </summary>
+        </member>
+        <member name="P:Zxcvbn.Entropy.Value">
+            <summary>
+            Gets or sets a calculated estimate of how many bits of entropy the password covers.
+            </summary>
+        </member>
+        <member name="T:Zxcvbn.EntropyEstimates">
+            <summary>
+            Estimates password entropy.
+            </summary>
+        </member>
+        <member name="M:Zxcvbn.EntropyEstimates.EstimateEntropy(System.Double)">
+            <summary>
+            Calculates the password entropy.
+            </summary>
+            <param name="minEntropy">The entropy.</param>
+            <returns>A password entropy object.</returns>
+        </member>
+        <member name="T:Zxcvbn.Feedback">
+            <summary>
+            Generates feedback based on the match results.
+            </summary>
+        </member>
+        <member name="M:Zxcvbn.Feedback.GetFeedback(System.Int32,System.Collections.Generic.IEnumerable{Zxcvbn.Matcher.Matches.Match})">
+            <summary>
+            Gets feedback based on the provided score and matches.
+            </summary>
+            <param name="score">The score to assess.</param>
+            <param name="sequence">The sequence of matches to assess.</param>
+            <returns>Any warnings and suggestiongs about the password matches.</returns>
+        </member>
+        <member name="T:Zxcvbn.FeedbackItem">
+            <summary>
+            Represents feedback that can be presented to the user.
+            </summary>
+        </member>
+        <member name="P:Zxcvbn.FeedbackItem.Suggestions">
+            <summary>
+            Gets the list of suggestions that can be presented.
+            </summary>
+        </member>
+        <member name="P:Zxcvbn.FeedbackItem.Warning">
+            <summary>
+            Gets the warning that should be the headline for the user.
+            </summary>
+        </member>
         <member name="T:Zxcvbn.MinimumEntropy">
             <summary>
             Estimates how long a password will take to crack under various conditions.
@@ -879,139 +1012,6 @@
             <summary>
             Gets a score from 0 to 4 (inclusive), with 0 being least secure and 4 being most secure, calculated from the nubmer of guesses estimated to be needed.
             </summary>
-        </member>
-        <member name="T:Zxcvbn.Scoring.BruteForceGuessesCalculator">
-            <summary>
-            Estimates the number of attempts needed to brute-force the password.
-            </summary>
-        </member>
-        <member name="F:Zxcvbn.Scoring.BruteForceGuessesCalculator.MinSubmatchGuessesMultiCharacter">
-            <summary>
-            The minimum submatch guesses for a multi character string.
-            </summary>
-        </member>
-        <member name="F:Zxcvbn.Scoring.BruteForceGuessesCalculator.MinSubmatchGuessesSingleCharacter">
-            <summary>
-            The minimum submatch guesses for a single character.
-            </summary>
-        </member>
-        <member name="M:Zxcvbn.Scoring.BruteForceGuessesCalculator.CalculateGuesses(Zxcvbn.Matcher.Matches.BruteForceMatch)">
-            <summary>
-            Estimates the attempts required to guess the password.
-            </summary>
-            <param name="match">The match.</param>
-            <returns>The guesses estimate.</returns>
-        </member>
-        <member name="T:Zxcvbn.Scoring.DateGuessesCalculator">
-            <summary>
-            Estimates the number of attempts needed to guess the date.
-            </summary>
-        </member>
-        <member name="F:Zxcvbn.Scoring.DateGuessesCalculator.MinimumYearSpace">
-            <summary>
-            The minimum distance between the reference date and the provided date.
-            </summary>
-        </member>
-        <member name="M:Zxcvbn.Scoring.DateGuessesCalculator.CalculateGuesses(Zxcvbn.Matcher.Matches.DateMatch)">
-            <summary>
-            Estimates the attempts required to guess the password.
-            </summary>
-            <param name="match">The match.</param>
-            <returns>The guesses estimate.</returns>
-        </member>
-        <member name="T:Zxcvbn.Scoring.DictionaryGuessesCalculator">
-            <summary>
-            Estimates the number of attempts needed to dictionary search for the password.
-            </summary>
-        </member>
-        <member name="M:Zxcvbn.Scoring.DictionaryGuessesCalculator.CalculateGuesses(Zxcvbn.Matcher.Matches.DictionaryMatch)">
-            <summary>
-            Estimates the attempts required to guess the password.
-            </summary>
-            <param name="match">The match.</param>
-            <returns>The guesses estimate.</returns>
-        </member>
-        <member name="M:Zxcvbn.Scoring.DictionaryGuessesCalculator.L33tVariations(Zxcvbn.Matcher.Matches.DictionaryMatch)">
-            <summary>
-            Calculates the number of l33t variations in the word.
-            </summary>
-            <param name="match">The match.</param>
-            <returns>The number of possible variations.</returns>
-        </member>
-        <member name="M:Zxcvbn.Scoring.DictionaryGuessesCalculator.UppercaseVariations(System.String)">
-            <summary>
-            Calculates the number of uppercase variations in the word.
-            </summary>
-            <param name="token">The token.</param>
-            <returns>The number of possible variations.</returns>
-        </member>
-        <member name="T:Zxcvbn.Scoring.RegexGuessesCalculator">
-            <summary>
-            Estimates the number of attempts needed to guess the value picked out by regular expression.
-            </summary>
-        </member>
-        <member name="M:Zxcvbn.Scoring.RegexGuessesCalculator.CalculateGuesses(Zxcvbn.Matcher.Matches.RegexMatch)">
-            <summary>
-            Estimates the attempts required to guess the password.
-            </summary>
-            <param name="match">The match.</param>
-            <returns>The guesses estimate.</returns>
-        </member>
-        <member name="T:Zxcvbn.Scoring.RepeatGuessesCalculator">
-            <summary>
-            Estimates the number of attempts needed to guesses the number of repeats.
-            </summary>
-        </member>
-        <member name="M:Zxcvbn.Scoring.RepeatGuessesCalculator.CalculateGuesses(Zxcvbn.Matcher.Matches.RepeatMatch)">
-            <summary>
-            Estimates the attempts required to guess the password.
-            </summary>
-            <param name="match">The match.</param>
-            <returns>The guesses estimate.</returns>
-        </member>
-        <member name="T:Zxcvbn.Scoring.SequenceGuessesCalculator">
-            <summary>
-            Estimates the number of attempts needed to guess the sequence.
-            </summary>
-        </member>
-        <member name="M:Zxcvbn.Scoring.SequenceGuessesCalculator.CalculateGuesses(Zxcvbn.Matcher.Matches.SequenceMatch)">
-            <summary>
-            Estimates the attempts required to guess the password.
-            </summary>
-            <param name="match">The match.</param>
-            <returns>The guesses estimate.</returns>
-        </member>
-        <member name="T:Zxcvbn.Scoring.SpatialGuessesCalculator">
-            <summary>
-            Estimates the number of attempts needed to guess the spatial pattern.
-            </summary>
-        </member>
-        <member name="F:Zxcvbn.Scoring.SpatialGuessesCalculator.KeyboardAverageDegree">
-            <summary>
-            The average number of adjacent characters on a keyboard.
-            </summary>
-        </member>
-        <member name="F:Zxcvbn.Scoring.SpatialGuessesCalculator.KeyboardStartingPositions">
-            <summary>
-            The number of starting positions on a keyboard.
-            </summary>
-        </member>
-        <member name="F:Zxcvbn.Scoring.SpatialGuessesCalculator.KeypadAverageDegree">
-            <summary>
-            The average number of adjacent characters on a keypad.
-            </summary>
-        </member>
-        <member name="F:Zxcvbn.Scoring.SpatialGuessesCalculator.KeypadStartingPositions">
-            <summary>
-            The number of starting positions on a keypad.
-            </summary>
-        </member>
-        <member name="M:Zxcvbn.Scoring.SpatialGuessesCalculator.CalculateGuesses(Zxcvbn.Matcher.Matches.SpatialMatch)">
-            <summary>
-            Estimates the attempts required to guess the password.
-            </summary>
-            <param name="match">The match.</param>
-            <returns>The guesses estimate.</returns>
         </member>
         <member name="T:Zxcvbn.TimeEstimates">
             <summary>
