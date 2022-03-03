@@ -1,23 +1,22 @@
 ﻿using System;
 
-namespace Zxcvbn
+namespace Zxcvbn;
+
+/// <summary>
+/// Estimates password entropy.
+/// </summary>
+internal static class EntropyEstimates
 {
     /// <summary>
-    /// Estimates password entropy.
+    /// Calculates the password entropy.
     /// </summary>
-    internal static class EntropyEstimates
+    /// <param name="minEntropy">The entropy.</param>
+    /// <returns>A password entropy object.</returns>
+    public static Entropy EstimateEntropy(double minEntropy)
     {
-        /// <summary>
-        /// Calculates the password entropy.
-        /// </summary>
-        /// <param name="minEntropy">The entropy.</param>
-        /// <returns>A password entropy object.</returns>
-        public static Entropy EstimateEntropy(double minEntropy)
+        return new Entropy
         {
-            return new Entropy
-            {
-                Value = Math.Round(minEntropy, 3),
-            };
-        }
+            Value = Math.Round(minEntropy, 3),
+        };
     }
 }

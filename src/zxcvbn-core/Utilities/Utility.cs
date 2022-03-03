@@ -1,47 +1,45 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace Zxcvbn
+namespace Zxcvbn;
+
+/// <summary>
+/// A few useful extension methods used through the Zxcvbn project.
+/// </summary>
+internal static class Utility
 {
     /// <summary>
-    /// A few useful extension methods used through the Zxcvbn project.
+    /// Returns a list of the lines of text from an embedded resource in the assembly.
     /// </summary>
-    internal static class Utility
+    /// <param name="resourceName">The name of the resource to get the contents from.</param>
+    /// <returns>An enumerable of lines of text in the resource or null if the resource does not exist.</returns>
+    public static IEnumerable<string> GetEmbeddedResourceLines(string resourceName)
     {
-        /// <summary>
-        /// Returns a list of the lines of text from an embedded resource in the assembly.
-        /// </summary>
-        /// <param name="resourceName">The name of the resource to get the contents from.</param>
-        /// <returns>An enumerable of lines of text in the resource or null if the resource does not exist.</returns>
-        public static IEnumerable<string> GetEmbeddedResourceLines(string resourceName)
+        var asm = typeof(Utility).GetTypeInfo().Assembly;
+        if (!asm.GetManifestResourceNames().Contains(resourceName)) return null; // Not an embedded resource
+
+        var lines = new List<string>();
+
+        using var stream = asm.GetManifestResourceStream(resourceName);
+        using var text = new StreamReader(stream ?? throw new InvalidOperationException());
+        while (!text.EndOfStream)
         {
-            var asm = typeof(Utility).GetTypeInfo().Assembly;
-            if (!asm.GetManifestResourceNames().Contains(resourceName)) return null; // Not an embedded resource
-
-            var lines = new List<string>();
-
-            using (var stream = asm.GetManifestResourceStream(resourceName))
-            using (var text = new StreamReader(stream))
-            {
-                while (!text.EndOfStream)
-                {
-                    lines.Add(text.ReadLine());
-                }
-            }
-
-            return lines;
+            lines.Add(text.ReadLine());
         }
 
-        /// <summary>
-        /// Reverse a string in one call.
-        /// </summary>
-        /// <param name="str">String to reverse.</param>
-        /// <returns>String in reverse.</returns>
-        public static string StringReverse(this string str)
-        {
-            return new string(str.Reverse().ToArray());
-        }
+        return lines;
+    }
+
+    /// <summary>
+    /// Reverse a string in one call.
+    /// </summary>
+    /// <param name="str">String to reverse.</param>
+    /// <returns>String in reverse.</returns>
+    public static string StringReverse(this string str)
+    {
+        return new string(str.Reverse().ToArray());
     }
 }

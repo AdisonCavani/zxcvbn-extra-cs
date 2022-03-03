@@ -1,87 +1,87 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using Zxcvbn.Matcher.Matches;
 
-namespace Zxcvbn.Scoring
+namespace Zxcvbn.Scoring;
+
+/// <summary>
+/// Estimates the number of attempts needed to dictionary search for the password.
+/// </summary>
+internal class DictionaryGuessesCalculator
 {
     /// <summary>
-    /// Estimates the number of attempts needed to dictionary search for the password.
+    /// Estimates the attempts required to guess the password.
     /// </summary>
-    internal class DictionaryGuessesCalculator
+    /// <param name="match">The match.</param>
+    /// <returns>The guesses estimate.</returns>
+    public static double CalculateGuesses(DictionaryMatch match)
     {
-        /// <summary>
-        /// Estimates the attempts required to guess the password.
-        /// </summary>
-        /// <param name="match">The match.</param>
-        /// <returns>The guesses estimate.</returns>
-        public static double CalculateGuesses(DictionaryMatch match)
+        match.BaseGuesses = match.Rank;
+        match.UppercaseVariations = UppercaseVariations(match.Token);
+        match.L33tVariations = L33tVariations(match);
+        var reversedVariations = match.Reversed ? 2 : 1;
+
+        return match.BaseGuesses * match.UppercaseVariations * match.L33tVariations * reversedVariations;
+    }
+
+    /// <summary>
+    /// Calculates the number of l33t variations in the word.
+    /// </summary>
+    /// <param name="match">The match.</param>
+    /// <returns>The number of possible variations.</returns>
+    internal static double L33tVariations(DictionaryMatch match)
+    {
+        if (!match.L33t)
+            return 1;
+
+        var variations = 1.0;
+
+        foreach (var subbed in match.Sub.Keys)
         {
-            match.BaseGuesses = match.Rank;
-            match.UppercaseVariations = UppercaseVariations(match.Token);
-            match.L33tVariations = L33tVariations(match);
-            var reversedVariations = match.Reversed ? 2 : 1;
+            var unsubbed = match.Sub[subbed];
+            var s = match.Token.ToLower(CultureInfo.CurrentCulture).Count(c => c == subbed);
+            var u = match.Token.ToLower(CultureInfo.CurrentCulture).Count(c => c == unsubbed);
 
-            return match.BaseGuesses * match.UppercaseVariations * match.L33tVariations * reversedVariations;
-        }
-
-        /// <summary>
-        /// Calculates the number of l33t variations in the word.
-        /// </summary>
-        /// <param name="match">The match.</param>
-        /// <returns>The number of possible variations.</returns>
-        internal static double L33tVariations(DictionaryMatch match)
-        {
-            if (!match.L33t)
-                return 1;
-
-            var variations = 1.0;
-
-            foreach (var subbed in match.Sub.Keys)
+            if (s == 0 || u == 0)
             {
-                var unsubbed = match.Sub[subbed];
-                var s = match.Token.ToLower().Count(c => c == subbed);
-                var u = match.Token.ToLower().Count(c => c == unsubbed);
-
-                if (s == 0 || u == 0)
-                {
-                    variations *= 2;
-                }
-                else
-                {
-                    var p = Math.Min(u, s);
-                    var possibilities = 0.0;
-                    for (var i = 1; i <= p; i++)
-                        possibilities += PasswordScoring.Binomial(u + s, i);
-                    variations *= possibilities;
-                }
+                variations *= 2;
             }
-
-            return variations;
+            else
+            {
+                var p = Math.Min(u, s);
+                var possibilities = 0.0;
+                for (var i = 1; i <= p; i++)
+                    possibilities += PasswordScoring.Binomial(u + s, i);
+                variations *= possibilities;
+            }
         }
 
-        /// <summary>
-        /// Calculates the number of uppercase variations in the word.
-        /// </summary>
-        /// <param name="token">The token.</param>
-        /// <returns>The number of possible variations.</returns>
-        internal static double UppercaseVariations(string token)
-        {
-            if (token.All(c => char.IsLower(c)) || token.ToLower() == token)
-                return 1;
+        return variations;
+    }
 
-            if ((char.IsUpper(token.First()) && token.Skip(1).All(c => char.IsLower(c)))
-                || token.All(c => char.IsUpper(c))
-                || (char.IsUpper(token.Last()) && token.Take(token.Length - 1).All(c => char.IsLower(c))))
-                return 2;
+    /// <summary>
+    /// Calculates the number of uppercase variations in the word.
+    /// </summary>
+    /// <param name="token">The token.</param>
+    /// <returns>The number of possible variations.</returns>
+    internal static double UppercaseVariations(string token)
+    {
+        if (token.All(c => char.IsLower(c)) || token.ToLower(CultureInfo.CurrentCulture) == token)
+            return 1;
 
-            var u = token.Count(c => char.IsUpper(c));
-            var l = token.Count(c => char.IsLower(c));
-            var variations = 0.0;
+        if ((char.IsUpper(token.First()) && token.Skip(1).All(c => char.IsLower(c)))
+            || token.All(c => char.IsUpper(c))
+            || (char.IsUpper(token.Last()) && token.Take(token.Length - 1).All(c => char.IsLower(c))))
+            return 2;
 
-            for (var i = 1; i <= Math.Min(u, l); i++)
-                variations += PasswordScoring.Binomial(u + l, i);
+        var u = token.Count(c => char.IsUpper(c));
+        var l = token.Count(c => char.IsLower(c));
+        var variations = 0.0;
 
-            return variations;
-        }
+        for (var i = 1; i <= Math.Min(u, l); i++)
+            variations += PasswordScoring.Binomial(u + l, i);
+
+        return variations;
     }
 }

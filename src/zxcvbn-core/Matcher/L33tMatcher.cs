@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using Zxcvbn.Matcher.Matches;
 
@@ -73,7 +74,7 @@ internal class L33tMatcher : IMatcher
                 foreach (DictionaryMatch match in matcher.MatchPassword(subbedPassword))
                 {
                     var token = password.Substring(match.i, match.j - match.i + 1);
-                    if (token.ToLower().Equals(match.MatchedWord.ToLower(), StringComparison.Ordinal))
+                    if (token.ToLower(CultureInfo.CurrentCulture).Equals(match.MatchedWord.ToLower(CultureInfo.CurrentCulture), StringComparison.Ordinal))
                         continue;
 
                     var matchSub = new Dictionary<char, char>();

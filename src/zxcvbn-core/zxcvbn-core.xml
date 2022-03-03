@@ -30,7 +30,7 @@
             <summary>
             Find date matches in <paramref name="password" />.
             </summary>
-            <param name="password">The passsord to check.</param>
+            <param name="password">The password to check.</param>
             <returns>An enumerable of date matches.</returns>
         </member>
         <member name="T:Zxcvbn.Matcher.DictionaryMatcher">
@@ -725,7 +725,7 @@
             Perform the password matching on the given password and user inputs.
             </summary>
             <param name="password">The password to assess.</param>
-            <param name="userInputs">Optionally, an enumarable of user data.</param>
+            <param name="userInputs">Optionally, an enumerable of user data.</param>
             <returns>Result for the password.</returns>
         </member>
         <member name="M:Zxcvbn.Core.GetAllMatches(System.String,System.Collections.Generic.IEnumerable{System.String})">
