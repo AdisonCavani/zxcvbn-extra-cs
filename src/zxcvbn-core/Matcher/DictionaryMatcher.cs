@@ -61,7 +61,7 @@ internal class DictionaryMatcher : IMatcher
             for (var j = i; j < length; j++)
             {
                 var passwordSub = passwordLower.Substring(i, j - i + 1);
-                if (rankedDictionary.ContainsKey(passwordSub))
+                if (rankedDictionary.TryGetValue(passwordSub, out var matchedIndex))
                 {
                     var match = new DictionaryMatch
                     {
@@ -69,7 +69,7 @@ internal class DictionaryMatcher : IMatcher
                         j = j,
                         Token = password.Substring(i, j - i + 1),
                         MatchedWord = passwordSub,
-                        Rank = rankedDictionary[passwordSub],
+                        Rank = matchedIndex,
                         DictionaryName = dictionaryName,
                         Reversed = false,
                         L33t = false,
